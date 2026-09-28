@@ -1,32 +1,42 @@
-# React + TypeScript + Vite
+# HRIS Cuti — Leave Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sistem informasi pengelolaan cuti karyawan dengan manajemen kuota otomatis, notifikasi, dan kontrol akses berbasis peran (STAFF, MANAGER, HR).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Authentication** — JWT (Web Crypto HMAC-SHA256), 3 roles, persistent sessions, role-based route guards
+- **Leave Management** — Request, approve/reject, cancel with real-time quota validation
+- **Quota System** — Annual (12), Sick (10), Personal (3) days/year; auto-deduct on approval, restore on reject/cancel
+- **Notifications** — In-app notifications + mock email service with HTML templates
+- **Testing** — 66 E2E (Playwright) + 75 unit tests (Vitest), all passing
+- **Design** — CSS design tokens, dark mode, responsive, accessible
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React 19 · TypeScript · Vite · React Router · TanStack Query · Zustand · Playwright · Vitest · GitHub Actions
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run test       # unit tests
+npm run test:e2e   # E2E tests
+npm run build      # production build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Demo Accounts
+
+| Role | Email | Password |
+|------|-------|----------|
+| HR | hr@company.com | password |
+| Manager | manager@company.com | password |
+| Staff | staff@company.com | password |
+
+## Notes
+
+Frontend + mock services (localStorage). Production use requires a backend API, database, and SMTP integration.
+
+## License
+
+MIT
